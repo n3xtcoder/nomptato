@@ -1,7 +1,14 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+/* background-color: white; */
+height: 100vh;
 }
-
+/* body {
+  background-color: #fff3f1
+} */
+.compRoot {
+  background-color:red;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
