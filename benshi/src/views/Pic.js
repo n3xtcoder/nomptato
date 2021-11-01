@@ -14,6 +14,8 @@ const Pic = () => {
   const [picIndex, setPicIndex] = useState(null);
   const [nxtPic, setNxtPic] = useState(null);
   const [prvPic, setPrvPic] = useState(null);
+
+  //? if no pics in context - fetch them
   useEffect(() => {
     if (pics.length === 0) {
       (async () => {
@@ -21,6 +23,7 @@ const Pic = () => {
       })();
     }
   }, []);
+  //? set pic and pic index
   useEffect(() => {
     if (pics.length !== 0) {
       setPic(pics.find((p) => p.id === parseInt(id)));
@@ -28,6 +31,7 @@ const Pic = () => {
     }
   }, [pics, id]);
 
+  //? set next and previous pic indices
   useEffect(() => {
     if (picIndex || picIndex === 0) {
       picIndex !== 0
@@ -37,6 +41,7 @@ const Pic = () => {
       setNxtPic(pics[(picIndex + 1) % pics.length].id);
     }
   }, [picIndex]);
+
   return (
     <div className={classes.compRoot}>
       <Grid container>

@@ -5,6 +5,7 @@ import Alert from '@material-ui/lab/Alert';
 import { useStyles } from '../style/myStyle';
 require('dotenv').config();
 
+//? AWS CONFIGURATION
 const S3_BUCKET = `${process.env.REACT_APP_S3_BUCKET}`;
 const REGION = `${process.env.REACT_APP_S3_REGION}`;
 
@@ -28,12 +29,13 @@ const Upload = () => {
     setLoading(true);
     setMsg('Uploading file');
     const file = e.target.files[0];
-    console.log(`file`, file);
+    //? Checking file size
     const fileSize = file.size / (1024 * 1024);
     if (fileSize > 50) {
       setMsg('I told you NOT MORE THAN 50MB! 🤬');
       setSeverity('warning');
     } else {
+      //? Upload to S3
       const params = {
         ACL: 'public-read',
         Body: file,
@@ -44,6 +46,7 @@ const Upload = () => {
       myBucket
         .putObject(params)
         .on('httpUploadProgress', (evt) => {
+          //? extracting upload progress
           setProgress(Math.round((evt.loaded / evt.total) * 100));
         })
         .send((err) => {
