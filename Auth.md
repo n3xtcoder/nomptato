@@ -8,15 +8,4 @@ To redirect unauthenticated users to the login page in case an API call results 
 
 - If an API call returns a 401 response, isAuthenticated will be set to false, and the app will redirect the user.
 
-```mermaid
-flowchart TB;
-a((user))
-b[view]
-c{context-isAuthenticated}
-d['private route' wrapper]
-e[login page]
-a-->d
-d-->c
-c--yes-->b
-c--no-->e
-```
+![Alt text](./testing.svg)
